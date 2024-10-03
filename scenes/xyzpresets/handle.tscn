@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c17go2cl1oh02"]
+
+[ext_resource type="Material" uid="uid://d2rnc1twxwfir" path="res://materials/gizmo.tres" id="1_d0d24"]
+
+[node name="Handle" type="CSGSphere3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.00615489, -0.0101059, -0.00868487)
+rings = 8
+material = ExtResource("1_d0d24")

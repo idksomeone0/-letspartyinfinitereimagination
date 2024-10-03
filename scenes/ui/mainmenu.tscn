@@ -1,0 +1,144 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv1xtdvswjftn"]
+
+[ext_resource type="Texture2D" uid="uid://1bxyb6g8cskn" path="res://debugteststuff/9tmkp8rpnlnz.jpg" id="1_ae4ge"]
+[ext_resource type="Script" path="res://scenes/ui/loadConfig.gd" id="1_al6nx"]
+[ext_resource type="Texture2D" uid="uid://do2s8vsgmqo0n" path="res://resources/logox.png" id="2_hmn70"]
+[ext_resource type="Script" path="res://scripts/UI/playbutton.gd" id="3_omm08"]
+[ext_resource type="Script" path="res://scenes/ui/options.gd" id="5_fpxj0"]
+[ext_resource type="Script" path="res://scenes/ui/Button.gd" id="6_vn5re"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_al6nx")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ae4ge")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -355.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 209.0
+grow_horizontal = 2
+texture = ExtResource("2_hmn70")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Panel" type="Panel" parent="Control/TextureRect/Panel/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 209.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TextureRect/Panel/TextureRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.508875, 0.69, 0.1725, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Play"
+script = ExtResource("3_omm08")
+
+[node name="Button2" type="Button" parent="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+script = ExtResource("5_fpxj0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel2" type="Panel" parent="Control/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="Control/TextureRect/MarginContainer/MarginContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="TextEdit" type="TextEdit" parent="Control/TextureRect/MarginContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 35)
+layout_mode = 2
+placeholder_text = "Username..."
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Control/TextureRect/MarginContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "wmwmwmwmwm"
+edit_alpha = false
+
+[node name="Button" type="Button" parent="Control/TextureRect/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 40
+text = "X"
+script = ExtResource("6_vn5re")
+
+[connection signal="pressed" from="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button" to="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="button_down" from="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button2" to="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button2" method="_on_button_up"]
+[connection signal="button_up" from="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button2" to="Control/TextureRect/Panel/TextureRect/Panel/MarginContainer/VBoxContainer/Button2" method="_on_button_up"]
+[connection signal="button_up" from="Control/TextureRect/MarginContainer/MarginContainer/Button" to="Control/TextureRect/MarginContainer/MarginContainer/Button" method="_on_button_up"]

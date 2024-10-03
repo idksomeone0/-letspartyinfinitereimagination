@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3a137mxawsq0"]
+
+[ext_resource type="Material" uid="uid://usbeyijocusu" path="res://materials/Simple.tres" id="1_y8p78"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h4o6w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_154tm"]
+
+[node name="RigidBody3D3" type="RigidBody3D" groups=["selectable"]]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h4o6w")
+surface_material_override/0 = ExtResource("1_y8p78")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_154tm")

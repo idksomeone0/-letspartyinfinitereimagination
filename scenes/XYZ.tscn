@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbkn0j8q50din"]
+
+[ext_resource type="PackedScene" uid="uid://dtm70eu0rxlbi" path="res://resources/models/X1Z/lpip.glb" id="1_n8y7f"]
+[ext_resource type="Material" uid="uid://dl714afrjgu5j" path="res://materials/diamond plate.tres" id="2_kyc0r"]
+[ext_resource type="Shader" uid="uid://dt81oon461p8x" path="res://materials/special mats/Barrier.tres" id="3_3mflk"]
+[ext_resource type="Material" uid="uid://k4vro4lhgckt" path="res://materials/dirt.tres" id="4_yt6ux"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce4aa"]
+render_priority = 0
+shader = ExtResource("3_3mflk")
+shader_parameter/Width = 3.0
+shader_parameter/Color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pr2cb"]
+render_priority = 0
+shader = ExtResource("3_3mflk")
+shader_parameter/Width = 3.0
+shader_parameter/Color = Color(1, 0, 0, 1)
+
+[node name="XYZGiver" instance=ExtResource("1_n8y7f")]
+transform = Transform3D(0.414469, 0, 0, 0, 0.414469, 0, 0, 0, 0.414469, 0, 0, 0)
+
+[node name="Plane" parent="." index="0"]
+material_override = ExtResource("2_kyc0r")
+
+[node name="Plane_001" parent="." index="1"]
+material_override = SubResource("ShaderMaterial_ce4aa")
+surface_material_override/0 = ExtResource("2_kyc0r")
+surface_material_override/2 = SubResource("ShaderMaterial_pr2cb")
+
+[node name="Plane_002" parent="." index="2"]
+transform = Transform3D(3.77539, 0, 0, 0, -1.8877, 1.23018e-06, 0, -6.15089e-07, -3.77539, -0.00128767, 0, 0.0111337)
+material_override = ExtResource("4_yt6ux")

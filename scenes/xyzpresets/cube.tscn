@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7uhp01tic24"]
+
+[ext_resource type="Script" path="res://scenes/xyzpresets/cubeClass.gd" id="1_ttj8a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaoek"]
+
+[node name="xyzObj" type="Node3D"]
+script = ExtResource("1_ttj8a")
+
+[node name="part1" type="CSGBox3D" parent="."]
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="part1"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="part1/RigidBody3D2"]
+shape = SubResource("BoxShape3D_yaoek")
