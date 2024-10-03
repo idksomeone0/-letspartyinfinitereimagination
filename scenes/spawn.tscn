@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctjch0tqatbw1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mcsf6"]
+size = Vector3(3, 0.2, 3)
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["spawn"]]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mcsf6")

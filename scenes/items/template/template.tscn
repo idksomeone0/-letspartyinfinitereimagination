@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://j0ykvp10jfjh"]
+
+[ext_resource type="Script" path="res://scenes/items/template/coolname.gd" id="1_sjss1"]
+
+[node name="activeSlot" type="Node3D"]
+script = ExtResource("1_sjss1")
+
+[node name="res" type="Node3D" parent="."]

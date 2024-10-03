@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://b5k5p8a238lhl"]
+
+[ext_resource type="Shader" uid="uid://brtwqmxqfmdek" path="res://materials/textures/skies/new_shader.tres" id="1_8omcq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcla6"]
+shader = ExtResource("1_8omcq")
+shader_parameter/Exposure = 0.4
+shader_parameter/Tint = Color(0.1026, 0.21166, 0.57, 1)
+
+[sub_resource type="Sky" id="Sky_k5xdt"]
+sky_material = SubResource("ShaderMaterial_hcla6")
+
+[resource]
+background_mode = 2
+background_color = Color(0.201896, 0.294512, 0.43646, 1)
+sky = SubResource("Sky_k5xdt")
+tonemap_mode = 2
+ssr_enabled = true
+ssil_enabled = true
+glow_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.2
+adjustment_saturation = 0.8

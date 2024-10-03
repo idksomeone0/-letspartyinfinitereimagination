@@ -1,0 +1,356 @@
+[gd_scene load_steps=38 format=3 uid="uid://dxpylkwjgd7h5"]
+
+[ext_resource type="Material" uid="uid://bup3afn1a0wc1" path="res://materials/grass.tres" id="1_oaoy2"]
+[ext_resource type="Material" uid="uid://dl714afrjgu5j" path="res://materials/diamond plate.tres" id="4_1onin"]
+[ext_resource type="PackedScene" uid="uid://dbkn0j8q50din" path="res://scenes/XYZ.tscn" id="4_t6wma"]
+[ext_resource type="Material" uid="uid://k4vro4lhgckt" path="res://materials/dirt.tres" id="5_qe3vl"]
+[ext_resource type="Material" uid="uid://djqsr368kmhpf" path="res://materials/bricks.tres" id="5_vgc3g"]
+[ext_resource type="Material" uid="uid://usbeyijocusu" path="res://materials/Simple.tres" id="6_1giu8"]
+[ext_resource type="Shader" uid="uid://c61sc0483rwr7" path="res://materials/special mats/Lava.tres" id="7_mbhur"]
+[ext_resource type="Shader" uid="uid://dt81oon461p8x" path="res://materials/special mats/Barrier.tres" id="8_hvob6"]
+[ext_resource type="Material" uid="uid://dqra0k7raidn3" path="res://materials/snow.tres" id="8_m5bex"]
+[ext_resource type="Material" uid="uid://bv8d0x1lhsl77" path="res://materials/sand.tres" id="10_1exaj"]
+[ext_resource type="Shader" uid="uid://d2ucdvr4t5xso" path="res://materials/special mats/water.tres" id="10_2omww"]
+[ext_resource type="Material" uid="uid://d48kqj2de785" path="res://materials/glass.tres" id="11_m512p"]
+[ext_resource type="Material" uid="uid://i30ejq566ydf" path="res://materials/rock.tres" id="12_bhjie"]
+[ext_resource type="Shader" uid="uid://dpd28tlap5y3i" path="res://materials/special mats/strange.tres" id="13_i4vax"]
+[ext_resource type="Shader" uid="uid://e8e7wp7uexe6" path="res://materials/special mats/glass.tres" id="14_0cara"]
+[ext_resource type="Material" uid="uid://cb3hwnvesc4an" path="res://materials/ice.tres" id="14_lpgqr"]
+[ext_resource type="Material" uid="uid://bvg8fflxoeqnc" path="res://materials/limestone.tres" id="15_526sf"]
+[ext_resource type="Material" uid="uid://c6gh26jl7cpuv" path="res://materials/path stone.tres" id="16_4s2tq"]
+[ext_resource type="Material" uid="uid://ctkr3lhm6be6g" path="res://materials/bark.tres" id="17_aypgv"]
+[ext_resource type="Material" uid="uid://boq1mv00q2wax" path="res://materials/fabric.tres" id="17_n82jh"]
+[ext_resource type="Material" uid="uid://cpsqwy8h1erqb" path="res://materials/tiles.tres" id="18_drm4x"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i0o1l"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qjxc6"]
+rayleigh_coefficient = 1.4
+turbidity = 0.0
+sun_disk_scale = 360.0
+energy_multiplier = 5.0
+
+[sub_resource type="Sky" id="Sky_hb2fw"]
+sky_material = SubResource("PhysicalSkyMaterial_qjxc6")
+
+[sub_resource type="Environment" id="Environment_j815n"]
+background_mode = 2
+sky = SubResource("Sky_hb2fw")
+ssr_enabled = true
+ssil_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hs1fo"]
+
+[sub_resource type="Shader" id="Shader_dcwjb"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_toon,specular_toon,vertex_lighting;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_gray,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	ROUGHNESS=roughness;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(0.333333,0.333333,0.333333,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_keud3"]
+render_priority = 0
+shader = SubResource("Shader_dcwjb")
+shader_parameter/albedo = Color(0.369873, 0.559416, 0.254555, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_y1iu4"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_toon,specular_toon,vertex_lighting;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_gray,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	ROUGHNESS=roughness;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(0.333333,0.333333,0.333333,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0petq"]
+render_priority = 0
+shader = SubResource("Shader_y1iu4")
+shader_parameter/albedo = Color(0.0688231, 0.408211, 0.401163, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lijx8"]
+render_priority = 0
+shader = ExtResource("7_mbhur")
+shader_parameter/PatternSpeed = 0.01
+shader_parameter/PatternSize = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ta8vs"]
+render_priority = 0
+shader = ExtResource("7_mbhur")
+shader_parameter/PatternSpeed = 0.01
+shader_parameter/PatternSize = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3u76k"]
+render_priority = 0
+shader = ExtResource("8_hvob6")
+shader_parameter/Width = 5.0
+shader_parameter/Color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh8ke"]
+render_priority = 0
+shader = ExtResource("8_hvob6")
+shader_parameter/Width = 3.0
+shader_parameter/Color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxg74"]
+render_priority = 0
+shader = ExtResource("10_2omww")
+shader_parameter/PatternSpeed = 0.03
+shader_parameter/Color = Color(0.351563, 0.351563, 0.351563, 1)
+shader_parameter/Reflectiveness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rl31p"]
+render_priority = 0
+shader = ExtResource("14_0cara")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Reflectiveness = 0.0
+shader_parameter/Roughness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xdjeg"]
+render_priority = 0
+shader = ExtResource("13_i4vax")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+
+[node name="Island" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(43.6176, 0, 0, 0, 0.117581, 0, 0, 0, 31.5911, 0, 0, 0)
+material_override = ExtResource("1_oaoy2")
+mesh = SubResource("BoxMesh_i0o1l")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j815n")
+
+[node name="XYZGiver" parent="." instance=ExtResource("4_t6wma")]
+transform = Transform3D(0.414469, 0, 0, 0, 0.414469, 0, 0, 0, 0.414469, 18.6418, 0.251088, -12.6527)
+
+[node name="Showcase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9154, 0, -12.0554)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, 0, 0.336, 0.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, 0, 0.336, 1.5)
+material_override = ExtResource("1_oaoy2")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, 0, 0.336, 2.5)
+mesh = SubResource("BoxMesh_hs1fo")
+material = SubResource("ShaderMaterial_keud3")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, 0, 0.336, 3.5)
+material_override = ExtResource("6_1giu8")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -1, 0.336, 0.5)
+material_override = ExtResource("5_vgc3g")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -1, 0.336, 1.5)
+material_override = ExtResource("5_qe3vl")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -1, 0.336, 2.5)
+material_override = SubResource("ShaderMaterial_0petq")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -1, 0.336, 3.5)
+material_override = SubResource("ShaderMaterial_lijx8")
+mesh = SubResource("BoxMesh_hs1fo")
+material = SubResource("ShaderMaterial_ta8vs")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -2, 0.336, 0.5)
+material_override = ExtResource("16_4s2tq")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -2, 0.336, 1.5)
+material_override = ExtResource("8_m5bex")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -2, 0.336, 2.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -2, 0.336, 3.5)
+material_override = SubResource("ShaderMaterial_3u76k")
+mesh = SubResource("BoxMesh_hs1fo")
+material = SubResource("ShaderMaterial_gh8ke")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -3, 0.336, 0.5)
+material_override = ExtResource("11_m512p")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D14" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -3, 0.336, 1.5)
+material_override = ExtResource("10_1exaj")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D15" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -3, 0.336, 2.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D16" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.580693, 0, 0, 0, 0.580693, 0, 0, 0, 0.580693, -3, 0.336, 3.5)
+mesh = SubResource("BoxMesh_hs1fo")
+material = SubResource("ShaderMaterial_rxg74")
+
+[node name="CSGMesh3D17" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -4, 0.336, 0.5)
+material_override = SubResource("ShaderMaterial_rl31p")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D18" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -4, 0.336, 1.5)
+material_override = ExtResource("12_bhjie")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D19" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -4, 0.336, 2.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D20" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -4, 0.336, 3.5)
+mesh = SubResource("BoxMesh_hs1fo")
+material = SubResource("ShaderMaterial_xdjeg")
+
+[node name="CSGMesh3D21" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -5, 0.336, 0.5)
+material_override = ExtResource("17_n82jh")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D24" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -6, 0.336, 0.5)
+material_override = ExtResource("18_drm4x")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D22" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -5, 0.336, 1.5)
+material_override = ExtResource("14_lpgqr")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D23" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -5, 0.336, 2.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D26" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -6, 0.336, 1.5)
+material_override = ExtResource("15_526sf")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D27" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -6, 0.336, 2.5)
+material_override = ExtResource("4_1onin")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGMesh3D29" type="CSGMesh3D" parent="Showcase"]
+transform = Transform3D(0.562886, 0, 0, 0, 0.562886, 0, 0, 0, 0.562886, -7, 0.336, 1.5)
+material_override = ExtResource("17_aypgv")
+mesh = SubResource("BoxMesh_hs1fo")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.39698, 0, 0, 0, 1, 0, 0, 0, 3.36922, 18.554, -0.356818, -12.5694)
+material_override = ExtResource("16_4s2tq")

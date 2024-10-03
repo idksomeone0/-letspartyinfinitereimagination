@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://m8hap7aq80a0"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_v2rsy"]
+[ext_resource type="Material" uid="uid://dl714afrjgu5j" path="res://materials/diamond plate.tres" id="2_ec4c7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_73qjq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b6h1m"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_v2rsy")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_73qjq")
+material = ExtResource("2_ec4c7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b6h1m")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641773, 0)
