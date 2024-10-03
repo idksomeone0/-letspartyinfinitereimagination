@@ -1,6 +1,8 @@
 # Let's Party Today
 (LPI reimagined)
 
+Keep in mind I didn't include some of the stuff like materials on the repository itself because of the size limitations. Project probably needs to be repackaged when imported to Godot.
+
 This is a project that I've worked on for about two months, but I've come to see it's biting off more than I can chew so I decided to just post it on here for whoever might care, maybe I'll come back to it maybe I won't. Feel free to expand upon it or use it for something, although with due credit. Made in Godot, of course.
 Let's Part Infinite (LPI) is a Roblox game made in 2016 by FoxBin about an island with hundreds of items and weapons to use including building tools. It's centered around anarchy.
 https://www.roblox.com/games/391104146/Lets-Party-Gear-Testing-Edition-READ-THE-DESC 
